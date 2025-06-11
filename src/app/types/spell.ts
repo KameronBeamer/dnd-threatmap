@@ -1,6 +1,6 @@
 export type Spell = {
 	name: string
 	range: number
-	aoe: number
-    shape: string
+	aoe: number | null
+    shape: string | null
 }

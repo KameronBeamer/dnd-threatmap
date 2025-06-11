@@ -4,7 +4,7 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const response = await fetch(`https://www.dnd5eapi.co/api/2014/equipment/${id}`);

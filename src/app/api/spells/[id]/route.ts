@@ -4,7 +4,7 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const response = await fetch(`https://www.dnd5eapi.co/api/2014/spells/${id}`);
@@ -18,8 +18,8 @@ export async function GET(
     const spell = {
       name: data.name,
       range: data.range,
-      aoe: data.area_of_effect,
-      shape: data.area_of_effect?.type || null,
+      aoe: data.area_of_effect?.size ?? null,
+      shape: data.area_of_effect?.type ?? null,
     };
 
     return NextResponse.json(spell);

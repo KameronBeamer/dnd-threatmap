@@ -5,7 +5,7 @@ import type { Weapon } from '@/app/types/weapon';
 
 export default function WeaponSearch() {
   const [weaponId, setWeaponId] = useState('');
-  const [weapon, setWeapon] = useState<any>(null);
+  const [weapon, setWeapon] = useState<Weapon | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,8 +23,9 @@ export default function WeaponSearch() {
       if (!res.ok) throw new Error(data.error || 'Failed to fetch weapon');
 
       setWeapon(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      setError(message);
     } finally {
       setLoading(false);
     }

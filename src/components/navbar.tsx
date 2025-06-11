@@ -15,8 +15,8 @@ export default function Navbar() {
 				) : (
 					<>
 						{user.photoURL && (
-							<img
-								src={user.photoURL}
+							<Image
+								src={user.photoURL!}
 								alt="User"
 								className="h-8 w-8 rounded-full"
 							/>

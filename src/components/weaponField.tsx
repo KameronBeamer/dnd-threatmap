@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useResultContext } from '@/context/apiContext'
+
 
 export default function WeaponSearch() {
   const [weaponId, setWeaponId] = useState('');

@@ -1,5 +1,6 @@
 'use client'
 
+import { ResultProvider } from "@/context/apiContext"
 import Navbar from "../components/navbar";
 import WeaponSearch from "@/components/weaponField";
 import SpellSearch from "@/components/spellField";
@@ -9,14 +10,14 @@ import { useContext } from "react";
 export default function HomePage() {
   return (
     <UserProvider>
-      <Navbar />
-      <Main />
-      <>
+      <ResultProvider>
+        <Navbar />
+        <Main />
         <WeaponSearch />
         <SpellSearch />
-      </>
+      </ResultProvider>
     </UserProvider>
-  );
+  )
 }
 
 function Main() {

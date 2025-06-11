@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function spellSearch() {
+export default function SpellSearch() {
   const [spellId, setSpellId] = useState('');
   const [spell, setSpell] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
-import Image from 'next/image';
 
 export default function Navbar() {
 	const { user, login, logout } = useContext(UserContext);
@@ -15,10 +14,10 @@ export default function Navbar() {
 				) : (
 					<>
 						{user.photoURL && (
-							<Image
+							<img
 								src={user.photoURL!}
 								alt="User"
-								className="h-8 w-8 rounded-full"
+								className="rounded-full"
 							/>
 						)}
 						<Link href="/profile">Profile</Link>

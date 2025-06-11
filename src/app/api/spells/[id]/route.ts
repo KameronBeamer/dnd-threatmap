@@ -1,16 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = await params;
+export async function GET(req: NextRequest) {
+  const id = req.url.split('/').pop();
+
+  if (!id) {
+    return NextResponse.json({ error: 'Missing spell ID' }, { status: 400 });
+  }
 
   try {
     const response = await fetch(`https://www.dnd5eapi.co/api/2014/spells/${id}`);
 
     if (!response.ok) {
-      return NextResponse.json({ error: `Spell not found` }, { status: 404 });
+      return NextResponse.json({ error: 'Spell not found' }, { status: 404 });
     }
 
     const data = await response.json();
@@ -23,7 +24,6 @@ export async function GET(
     };
 
     return NextResponse.json(spell);
-
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error';
     return NextResponse.json({ error: message }, { status: 500 });

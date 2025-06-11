@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import type { Weapon } from '@/app/types/weapon';
 
 export default function WeaponSearch() {
   const [weaponId, setWeaponId] = useState('');

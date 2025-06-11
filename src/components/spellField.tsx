@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import type { Spell } from '@/app/types/spell';
 
 export default function SpellSearch() {
   const [spellId, setSpellId] = useState('');
-  const [spell, setSpell] = useState<any>(null);
+  const [spell, setSpell] = useState<Spell | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,8 +23,9 @@ export default function SpellSearch() {
       if (!res.ok) throw new Error(data.error || 'Failed to fetch spell');
 
       setSpell(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -55,7 +57,7 @@ export default function SpellSearch() {
           <p>Range: {spell.range}</p>
           {spell.aoe && (
             <p>
-              Area of Effect: {spell.aoe.type} ({spell.aoe.size} feet)
+              Area of Effect: {spell.shape} ({spell.aoe} feet)
             </p>
           )}
           {/* {spell.shape && (

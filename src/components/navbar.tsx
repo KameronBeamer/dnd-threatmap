@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import Image from 'next/image';
 
 export default function Navbar() {
 	const { user, login, logout } = useContext(UserContext);
